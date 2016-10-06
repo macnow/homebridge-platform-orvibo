@@ -1,0 +1,39 @@
+{
+  "name": "homebridge-platform-orvibo",
+  "version": "1.0.0",
+  "description": "Orvibo Smart Socket plugin for Homebridge",
+  "author": "Maciej Nowakowski",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/macnow/homebridge-platform-orvibo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/macnow/homebridge-platform-orvibo/issues",
+    "email": "macnow@gmail.com"
+  },
+  "keywords": [
+    "homebridge-plugin",
+    "homebridge",
+    "orvibo",
+    "s20",
+    "home",
+    "smartplug"
+  ],
+  "engines": {
+    "node": ">=4.4.0",
+    "homebridge": ">=0.3.0"
+  },
+  "dependencies": {
+    "node-orvibo": "^0.3.0"
+  },
+  "devDependencies": {
+    "semistandard": "^9.0.0"
+  },
+  "scripts": {
+    "debug": "DEBUG=* homebridge --debug --plugin-path .",
+    "test": "./node_modules/.bin/semistandard",
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags"
+  }
+}
