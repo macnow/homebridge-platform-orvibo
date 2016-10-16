@@ -63,7 +63,11 @@ class OrviboPlatform {
     });
     self.orvibo.on("externalstatechanged", function(device) {
         self.log("State of %s set to %s", device.name, device.state);
-        var accessory = self.accessories.get(device.macAddress);
+        var OrviboAcc = self.accessories.get(device.macAddress);
+	const outletService = OrviboAcc.accessory.getService(Service.Outlet);
+	if (outletService.getCharacteristic(Characteristic.On).value != device.state) {
+		outletService.getCharacteristic(Characteristic.On).setValue(device.state);
+	}
     });
     self.api.on('didFinishLaunching', this.didFinishLaunching.bind(this));
   }
@@ -135,7 +139,11 @@ class OrviboAccessory {
     outletService.getCharacteristic(Characteristic.On)
       .on('get', (callback) => {
           this.refresh();
-          callback();
+          if (this.device.state == true) {
+              callback(null, true);
+          } else {
+              callback(null, false);
+          }
       })
       .on('set', (value, callback) => {
           var state = value == 1;
@@ -149,7 +157,9 @@ class OrviboAccessory {
 
     const outletService = this.accessory.getService(Service.Outlet);
     outletService.setCharacteristic(Characteristic.Name, this.device.name);
-    outletService.getCharacteristic(Characteristic.On).setValue(this.device.state);
+    if (outletService.getCharacteristic(Characteristic.On).value != this.device.state) {
+        outletService.getCharacteristic(Characteristic.On).setValue(this.device.state);
+    }
 
     const infoService = this.accessory.getService(Service.AccessoryInformation);
     infoService
