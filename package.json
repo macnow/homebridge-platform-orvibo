@@ -20,6 +20,9 @@
     "home",
     "smartplug"
   ],
+  "scripts": {
+    "test": "jshint index.js"
+  },
   "engines": {
     "node": ">=4.4.0",
     "homebridge": ">=0.3.0"
@@ -28,7 +31,8 @@
     "node-orvibo": "^1.1.0"
   },
   "devDependencies": {
-    "semistandard": "^9.0.0"
+    "semistandard": "^9.0.0",
+    "jshint": "^2.9.4"
   },
   "scripts": {
     "debug": "DEBUG=* homebridge --debug --plugin-path .",
