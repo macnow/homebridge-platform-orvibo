@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/macnow/homebridge-platform-orvibo.svg?branch=master)](TravisBuild)
+
 # homebridge-platform-orvibo
 
 Orvibo Smart Socket plugin for [Homebridge](https://github.com/nfarina/homebridge).

@@ -23,10 +23,10 @@ class OrviboPlatform {
     self.accessories = new Map();
 
     self.orvibo = new Orvibo();
-    self.time1 = [] 
-    self.time2 = [] 
-    self.time3 = [] 
-    self.time4 = [] 
+    self.time1 = [];
+    self.time2 = [];
+    self.time3 = [];
+    self.time4 = [];
 
     self.orvibo.on("deviceadded", function(device) {
       self.log("New Orvibo found: %s [%s]", device.type, device.macAddress);
@@ -34,7 +34,7 @@ class OrviboPlatform {
 
       self.time2[device.macAddress] = setInterval(function() {
         self.orvibo.subscribe(device);
-      }, 1000)
+      }, 1000);
 
     });
 
@@ -64,10 +64,10 @@ class OrviboPlatform {
     self.orvibo.on("externalstatechanged", function(device) {
         self.log("State of %s set to %s", device.name, device.state);
         var OrviboAcc = self.accessories.get(device.macAddress);
-	const outletService = OrviboAcc.accessory.getService(Service.Outlet);
-	if (outletService.getCharacteristic(Characteristic.On).value != device.state) {
-		outletService.getCharacteristic(Characteristic.On).setValue(device.state);
-	}
+        const outletService = OrviboAcc.accessory.getService(Service.Outlet);
+        if (outletService.getCharacteristic(Characteristic.On).value != device.state) {
+          outletService.getCharacteristic(Characteristic.On).setValue(device.state);
+        }
     });
     self.api.on('didFinishLaunching', this.didFinishLaunching.bind(this));
   }
@@ -139,7 +139,7 @@ class OrviboAccessory {
     outletService.getCharacteristic(Characteristic.On)
       .on('get', (callback) => {
           this.refresh();
-          if (this.device.state == true) {
+          if (this.device.state === true) {
               callback(null, true);
           } else {
               callback(null, false);
@@ -166,7 +166,7 @@ class OrviboAccessory {
       .setCharacteristic(Characteristic.Name, this.device.name)
       .setCharacteristic(Characteristic.Manufacturer, 'Orvibo')
       .setCharacteristic(Characteristic.Model, this.device.type)
-      .setCharacteristic(Characteristic.SerialNumber, this.device.macAddress)
+      .setCharacteristic(Characteristic.SerialNumber, this.device.macAddress);
 
     this.accessory.context.lastRefreshed = new Date();
     return this;
