@@ -28,7 +28,7 @@
     "homebridge": ">=0.3.0"
   },
   "dependencies": {
-    "node-orvibo": "^1.1.0"
+    "node-orvibo-2": "^1.1.5"
   },
   "devDependencies": {
     "semistandard": "^9.0.0",
