@@ -1,6 +1,6 @@
 'use strict';
 
-const Orvibo = require('node-orvibo');
+const Orvibo = require('node-orvibo-2');
 var Accessory, Service, Characteristic, UUIDGen;
 
 module.exports = function (homebridge) {
